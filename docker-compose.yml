@@ -28,7 +28,7 @@ services:
       - "8655:8080"
     environment:
       - DEPLOYMENT_MODE=Web
-      - VALKEY_HOST=valkey
+      - VALKEY_HOST=valkey-db
       - VALKEY_PORT=6379
       - VALKEY_USERNAME=${VALKEY_USERNAME}
       - VALKEY_PASSWORD=${VALKEY_PASSWORD}
