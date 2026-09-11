@@ -21,7 +21,7 @@ services:
       
   # GUI container
   valkey-admin:
-    image: valkey/valkey-admin:latest
+    image: valkey/valkey-admin:1.1.1
     container_name: valkey-admin-web
     restart: unless-stopped
     ports:
