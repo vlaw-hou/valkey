@@ -1,11 +1,11 @@
 # Valkey w Admin GUI
 
-services:
-
   # network
-  networks:
-    caddynet:
-      external: true
+networks:
+  caddynet:
+    external: true
+
+services:      
 
   # Valkey db container
   valkey-db:
