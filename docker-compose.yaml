@@ -1,15 +1,25 @@
+# Valkey w Admin GUI
+
 services:
+
+  # network
+  networks:
+    caddynet:
+      external: true
+
+  # Valkey db container
   valkey:
-    image: valkey/valkey:latest
+    networks:
+      - caddynet
+    image: valkey/valkey:9.0-alpine
     container_name: valkey-server
     restart: unless-stopped
     ports:
       - "6379:6379"
-    environment:
-      - VALKEY_EXTRA_FLAGS=--requirepass mysecurepassword --loglevel warning
     volumes:
-      - valkey_data:/data
-
+      - /opt/1panel/docker/compose/valkey/valkey_data:/data
+      
+  # GUI container
   valkey-admin:
     image: valkey/valkey-admin:latest
     container_name: valkey-admin-web
@@ -25,6 +35,4 @@ services:
     depends_on:
       - valkey
 
-volumes:
-  valkey_data:
-    driver: local
+
