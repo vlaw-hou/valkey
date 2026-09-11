@@ -18,6 +18,8 @@ services:
       
   # GUI container
   valkey-admin:
+    networks:
+      - caddynet
     image: valkey/valkey-admin:1.1.1
     container_name: valkey-admin-web
     restart: unless-stopped
