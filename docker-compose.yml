@@ -1,10 +1,5 @@
 # Valkey w Admin GUI
 
-  # network
-networks:
-  caddynet:
-    external: true
-
 services:      
 
   # Valkey db container
@@ -13,6 +8,8 @@ services:
       - caddynet
     image: valkey/valkey:9.0-alpine
     container_name: valkey-server
+    command: >
+      valkey-server --requirepass ${VALKEY_PASSWORD} --appendonly yes
     restart: unless-stopped
     ports:
       - "6379:6379"
@@ -35,4 +32,7 @@ services:
     depends_on:
       - valkey-db
 
-
+#########
+networks:
+  caddynet:
+    external: true
