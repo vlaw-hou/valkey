@@ -8,7 +8,7 @@ services:
       external: true
 
   # Valkey db container
-  valkey:
+  valkey-db:
     networks:
       - caddynet
     image: valkey/valkey:9.0-alpine
@@ -25,14 +25,14 @@ services:
     container_name: valkey-admin-web
     restart: unless-stopped
     ports:
-      - "8080:8080"
+      - "8655:8080"
     environment:
       - DEPLOYMENT_MODE=Web
       - VALKEY_HOST=valkey
       - VALKEY_PORT=6379
-      - VALKEY_USERNAME=default
-      - VALKEY_PASSWORD=mysecurepassword
+      - VALKEY_USERNAME=${VALKEY_USERNAME}
+      - VALKEY_PASSWORD=${VALKEY_PASSWORD}
     depends_on:
-      - valkey
+      - valkey-db
 
 
