@@ -20,7 +20,7 @@ services:
     networks:
       - caddynet
     image: valkey/valkey-admin:1.1.1
-    container_name: valkey-admin-web
+    container_name: valkey-admin
     restart: unless-stopped
     ports:
       - "8655:8080"
