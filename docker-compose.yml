@@ -6,7 +6,7 @@ services:
     networks:
       - caddynet
     image: valkey/valkey:9.0-alpine
-    container_name: valkey-server
+    container_name: valkey-db
     command: >
       valkey-server --requirepass ${VALKEY_PASSWORD} --appendonly yes
     restart: unless-stopped
