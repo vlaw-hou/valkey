@@ -1,7 +1,6 @@
-# Valkey w Admin GUI
+# VALKEY w GUI
 
-services:      
-
+services:     
   # Valkey db container
   valkey-db:
     networks:
@@ -12,7 +11,7 @@ services:
       valkey-server --requirepass ${VALKEY_PASSWORD} --appendonly yes
     restart: unless-stopped
     ports:
-      - "6379:6379"
+      - "127.0.0.1:6379:6379"
     volumes:
       - /opt/1panel/docker/compose/valkey/valkey_data:/data
       
@@ -29,12 +28,12 @@ services:
       - DEPLOYMENT_MODE=Web
       - VALKEY_HOST=valkey-db
       - VALKEY_PORT=6379
-      - VALKEY_USERNAME=${VALKEY_USERNAME}
+      - VALKEY_AUTH_TYPE=password
+      - VALKEY_USERNAME=${VALKEY_USERNAME:-default}
       - VALKEY_PASSWORD=${VALKEY_PASSWORD}
     depends_on:
       - valkey-db
 
-#########
 networks:
   caddynet:
     external: true
