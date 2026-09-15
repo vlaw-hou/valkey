@@ -1,6 +1,11 @@
 # VALKEY w GUI
 
-services:     
+networks:
+  caddynet:
+    external: true
+
+services: 
+
   # Valkey db container
   valkey-db:
     networks:
@@ -13,7 +18,7 @@ services:
     ports:
       - "127.0.0.1:6379:6379"
     volumes:
-      - /opt/1panel/docker/compose/valkey/valkey_data:/data
+      - /opt/vps3/vps3-data/db-valkey/db-data:/data
       
   # GUI container
   valkey-admin:
@@ -33,7 +38,3 @@ services:
       - VALKEY_PASSWORD=${VALKEY_PASSWORD}
     depends_on:
       - valkey-db
-
-networks:
-  caddynet:
-    external: true
